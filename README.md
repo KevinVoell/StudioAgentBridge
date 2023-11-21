@@ -1,7 +1,7 @@
 # Studio Agent Bridge
-Studio Agent Bridge is a TypeScript/JavaScript framework designed to make it simple to add a copilot to your website using Microsoft Copilot Studio.  
+Studio Agent Bridge is a TypeScript/JavaScript framework designed to make it simple to add a custom copilot to your website using Microsoft Copilot Studio.  
 
-Easily add a custom canvas copilot to your website with only a fww lines of code!
+Easily add a custom canvas copilot to your website with only a few lines of code!
 
 You can try Microsoft Copilot Studio for free by visiting:
 
