@@ -1,0 +1,39 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Agent Bridge Sample Project</title>
+</head>
+<body>
+  <h1>Studio Agent Bridge Sample Project</h1>
+  <h3 id="headingTest"></h3>
+  <div>
+    <select id="selectTest">
+      <option>Test1</option>
+      <option>Test2</option>
+      <option>Test3</option>
+      <option>Test4</option>
+      <option>Test5</option>
+    </select>
+  </div>
+  <div>
+    <div id="webchat"></div>
+  </div>
+  <script src="../../dist/studioAgent.js"></script>
+  <script type="text/javascript">
+    var options = new StudioAgentBridgeOptions("{{TokenEndpointUrl}}");
+
+    var bridge = new StudioAgentBridge(options);
+    bridge.eventReceived = (name, args) => {
+      console.log(`Event received: ${name}`);
+
+      if (name === 'Initialize') {
+        console.log(`New event: ${name} ${args}`);
+      }
+    }
+    bridge.connect();
+  </script>
+</body>
+</html>
