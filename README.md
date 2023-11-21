@@ -10,6 +10,16 @@ Easily add a Copilot with a custom canvas to your website with only 4 lines of c
 
 ## Usage
 
+### Prerequisites 
+
+This framework relies on the Token Endpoint URL from Copilot studio.  You can get this url by navigating to your Copilot in Microsoft Copilot Studio and going to Settings>Channels>Mobile app:
+
+![Microsoft Copilot Studio Channels](/media/CopilotStudioChannels.png)
+
+Then copy the url for the Token endpoint:
+
+![Microsoft Copilot Studio Mobile app](/media/CopilotStudioMobileApp.png)
+
 ### Compile
 ```cmd
 tsc
@@ -30,8 +40,8 @@ bridge.connect();
 
 ## Roadmap
 
-| Status | Feature |
-| ------ | ------- |
-|    X   | Events  |
-|        | Themes  |
+| Feature Name | Feature |
+| ------------------ | :-------: |
+|    Events   | X  |
+|    Themes    |   |
 
