@@ -1,7 +1,11 @@
 # Studio Agent Bridge
-Studio Agent Bridge is a Typescript/JavaScript framework meant to ease the usage of Microsoft Copilot Studio on websites.
+Studio Agent Bridge is a Typescript/JavaScript framework meant to ease the learning curve of adding a custom Microsoft Copilot Studio on websites.
 
-Easily add a Copilot with a custom canvas to your website with only 4 lines of code
+Easily add a Copilot with a custom canvas to your website with only a few lines of code
+
+You can try Microsoft Copilot Studio for free by visiting:
+
+[Microsoft Copilot Studio](https://aka.ms/trycopilotstudio)
 
 ## Features
 
@@ -27,9 +31,19 @@ tsc
 
 ### Basic
 
+Include the studio agent javascript file in your html
+
 ``` javascript
 <script src="./dist/studioAgent.js"></script>
 ```
+
+Declare a div where the bot will be hosted
+
+```html
+<div id="webchat"></div>
+```
+
+Instantiate the options and connect the bot
 
 ``` javascript
 var options = new StudioAgentBridgeOptions("{{Token Address}}");
