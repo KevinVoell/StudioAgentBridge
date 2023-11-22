@@ -66,8 +66,7 @@ Example javascript files are located in the samples folder
 
 ## Roadmap
 
-| Feature Name | Feature |
-| ------------------ | :-------: |
-|    Events   | X  |
-|    Themes    |   |
-
+- [X] Events
+- [ ] Themes
+- [ ] YAML samples
+- [ ] Samples
