@@ -46,9 +46,9 @@ Declare a div where the bot will be hosted
 Instantiate the options and connect the bot
 
 ``` javascript
-var options = new StudioAgentBridgeOptions("{{Token Address}}");
+var options = new StudioAgent.BridgeOptions("{{Token Address}}");
 
-var bridge = new StudioAgentBridge(options);
+var bridge = new StudioAgent.Bridge(options);
 bridge.connect();
 ```
 
