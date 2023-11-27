@@ -54,13 +54,13 @@ bridge.connect();
 
 ## Samples
 
-Example javascript files are located in the samples folder
+Example javascript files are located in the [samples](./samples) folder
 
 | Name | Features |
 | ----- | -------- |
-| Basic | The very minimal example to get the copilot to show |
-| Events | This sample shows the very basic of using events.  It attaches an onchange to an HTML select element and when the selection changes it fires and event to the bot and the bot responds |
-| Options | This sample shows how to use the options class to change the behavior of the copilot |
+| [Basic](./samples/basic) | The very minimal example to get the copilot to show |
+| [Events](./samples/events) | This sample shows the very basic of using events.  It attaches an onchange to an HTML select element and when the selection changes it fires and event to the bot and the bot responds |
+| [Options](./samples/options) | This sample shows how to use the options class to change the behavior of the copilot |
 
 ### More samples coming soon
 
