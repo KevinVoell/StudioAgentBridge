@@ -23,9 +23,9 @@
   </div>
   <script src="../../dist/studioAgent.js"></script>
   <script type="text/javascript">
-    var options = new StudioAgentBridgeOptions("{{TokenEndpointUrl}}");
+    var options = new StudioAgent.BridgeOptions("{{TokenEndpointUrl}}");
 
-    var bridge = new StudioAgentBridge(options);
+    var bridge = new StudioAgent.Bridge(options);
     bridge.eventReceived = (name, args) => {
       console.log(`Event received: ${name}`);
 
