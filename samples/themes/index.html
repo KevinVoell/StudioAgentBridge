@@ -25,9 +25,8 @@
   <script type="text/javascript">
     var options = new StudioAgent.BridgeOptions("{{TokenEndpointUrl}}");
     options.elementId = 'customWebChatElement';
-    //options.theme = StudioAgentBridge.Theme.Themes.test;
-    var bridge = new StudioAgent.Bridge(options);
 
+    var bridge = new StudioAgent.Bridge(options);
     bridge.connect();
   </script>
 </body>
