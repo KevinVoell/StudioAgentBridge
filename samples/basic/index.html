@@ -6,26 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Studio Agent Bridge Sample Project</title>
 </head>
-<body>
+<body style="background-color: lightgray;">
   <h1>Studio Agent Bridge Sample Project</h1>
-  <h3 id="headingTest"></h3>
-  <div>
-    <select id="selectTest">
-      <option>Test1</option>
-      <option>Test2</option>
-      <option>Test3</option>
-      <option>Test4</option>
-      <option>Test5</option>
-    </select>
-  </div>
-  <div>
+  <h2>Basic Sample</h2>
+  <div style="width: 400px;">
     <div id="webchat"></div>
   </div>
   <script src="../../dist/studioAgent.js"></script>
   <script type="text/javascript">
-    var options = new StudioAgentBridgeOptions("{{TokenEndpointUrl}}");
-
-    var bridge = new StudioAgentBridge(options);
+    var options = new StudioAgent.BridgeOptions("{{TokenEndpointUrl}}");
+    //options.theme = new Theme.test2();
+    var bridge = new StudioAgent.Bridge(options);
     bridge.connect();
   </script>
 </body>
