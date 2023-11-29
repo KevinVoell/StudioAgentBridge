@@ -10,21 +10,13 @@
   <h1>Studio Agent Bridge Sample Project</h1>
   <h2>Themes Sample</h2>
   <div>
-    <select id="selectTest">
-      <option>Test1</option>
-      <option>Test2</option>
-      <option>Test3</option>
-      <option>Test4</option>
-      <option>Test5</option>
-    </select>
-  </div>
-  <div>
     <div id="customWebChatElement"></div>
   </div>
   <script src="../../dist/studioAgent.js"></script>
   <script type="text/javascript">
     var options = new StudioAgent.BridgeOptions("{{TokenEndpointUrl}}");
     options.elementId = 'customWebChatElement';
+    options.theme = StudioAgent.Themes.test;
 
     var bridge = new StudioAgent.Bridge(options);
     bridge.connect();
