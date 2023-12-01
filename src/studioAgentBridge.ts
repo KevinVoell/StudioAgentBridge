@@ -94,7 +94,7 @@ namespace StudioAgent {
             })
         }
 
-        public send(text: string) {
+        public send(text: string, silent: boolean = false) {
             var dispatchJSON = {
                 meta: {
                     method: "keyboard",
@@ -102,7 +102,7 @@ namespace StudioAgent {
                 payload: {
                     activity: {
                         channelData: {
-                                postBack: true,
+                                postBack: silent,
                         },
                             text: text,
                             type: "message",
