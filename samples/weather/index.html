@@ -1,0 +1,118 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Agent Bridge Sample Project</title>
+  <link  rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h4 id="alerts" class="alerts"></h4>
+  <div class="float-container">
+    <div class="heading float-child">
+      <h1>Studio Agent Bridge Sample</h1>
+      This sample demonstrates asking Copilot about the weather and updating the DOM based on it's response.
+      <h3>Type your question or select one below:</h3>
+      <ul>
+        <li><a href="#" onclick="bridge.send(this.innerText);">What is the current weather in Miami in celsius?</a></li>
+        <li><a href="#" onclick="bridge.send(this.innerText, true);">What is the current weather in Hawaii in celsius?</a> (Silent)</li>
+        <li><a href="#" onclick="bridge.send(this.innerText);">What is the current weather in Denver in Fahrenheit?</a></li>
+        <li><a href="#" onclick="bridge.send(this.innerText);">What is the current weather in Sydney in celsius?</a></li>
+        <li><a href="#" onclick="bridge.send(this.innerText, true);">What is the current weather in London in Fahrenheit?</a> (Silent)</li>
+      </ul>
+      <h3>Weather Copilot</h3>
+      <div class="chat">
+        <div id="webchat"></div>
+      </div>    
+    </div>
+    <div class="float-child weather">
+      <div class="weatherDetails">
+        <img id="icon" />
+        <div class="details">
+          <h1 id="location"></h1>
+          <h1 id="temp"></h1>
+          <h3 id="cap"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../../dist/studioAgent.js"></script>
+  <script type="text/javascript">
+    var options = new StudioAgent.BridgeOptions("{{TokenEndpointURL}}");
+
+    var bridge = new StudioAgent.Bridge(options);
+    bridge.eventReceived = (name, args) => {
+      console.log(`Event received: ${name}`);
+
+      switch (name) {
+        case 'Initialize':
+          console.log(`New event: ${name} ${args}`);
+          break;
+
+        case 'WeatherUpdate':
+          weatherUpdate(args);
+          break;
+      }
+    }
+    bridge.connect();
+
+    function weatherUpdate(args) {
+      if (args.source) {
+        console.log(args.source.location);
+
+        document.getElementById('location').innerText = args.source.location;
+        document.getElementById('temp').innerText = args.weather.current.temp;
+
+        var body = document.getElementsByTagName('body')[0];
+        const alerts = document.getElementById('alerts');
+        const icon = document.getElementById('icon');
+
+        icon.src = args.weather.current.urlIcon;
+        icon.title = args.weather.current.cap;
+        icon.alt = args.weather.current.cap;
+
+        var url = '';
+
+        switch (args.weather.current.cap) {
+          case 'Mostly sunny':
+            url = './media/SunnyDay.jpeg';
+            break;
+
+          case 'Sunny':
+            url = './media/SunnyDay.jpeg';
+            break;
+
+          case 'Partly sunny':
+            url = './media/PartlySunny.jpeg';
+            break;
+
+          case 'Cloudy':
+            url = './media/Cloudy.jpeg';
+            break;
+
+          case 'Mostly cloudy':
+            url = './media/Cloudy.jpeg';
+            break;
+
+          case 'Partly cloudy':
+            url = './media/PartlyCloudy.jpeg';
+            break;
+
+          default:
+            url = './media/SunnyDay.jpeg';
+            break;
+        }
+
+        body.style.backgroundImage = `url(${url})`;
+
+        if (args.weather.current.alertCount > 0) {
+          alerts.innerText = args.weather.current.alertTitle;
+        } else {
+          alerts.innerText = "";
+        }
+      }
+    }
+  </script>
+</body>
+</html>

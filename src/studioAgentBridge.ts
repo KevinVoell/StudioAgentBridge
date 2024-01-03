@@ -83,7 +83,10 @@ namespace StudioAgent {
                     {
                         directLine: directLine,
                         styleSet,
-                        store: store
+                        store: store,
+                        styleOptions: {
+                            hideUploadButton: true
+                        }
                     },
                     webchatElement
                     );

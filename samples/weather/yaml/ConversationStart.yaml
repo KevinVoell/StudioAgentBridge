@@ -1,0 +1,25 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnConversationStart
+  id: main
+  actions:
+    - kind: SendActivity
+      id: sendMessage_M0LuhV
+      activity:
+        text:
+          - Hello, I'm {System.Bot.Name}, a virtual assistant. Just so you are aware, I sometimes use AI to answer your questions. How can I help?
+        speak:
+          - Thanks for calling, how can I help?
+
+    - kind: SendActivity
+      id: sendActivity_Uqjwzx
+      activity:
+        kind: EventActivity
+        value: |-
+          ={bindings: [
+                  {
+                      elementId: "selectTest",
+                      value: "Echo"
+                  }
+              ]}
+        name: Initialize

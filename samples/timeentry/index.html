@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio Agent Bridge - Time Entry Example</title>
+
+  <style type="text/css">
+    p, body, td, input, select, button { font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif; font-size: 14px; }
+    body { padding: 0px; margin: 0px; background-color: #ffffff; }
+    a { color: #1155a3; }
+    .space { margin: 10px 0px 10px 0px; }
+    .main { padding: 10px; margin-top: 10px; }
+    .generated { color: #999; margin-top: 10px; }
+    .generated a { color: #999; }
+  </style>
+  <link  rel="stylesheet" href="styles.css">
+  <!-- DayPilot library -->
+  <script src="js/daypilot/daypilot-all.min.js"></script>
+
+</head>
+<body>
+<div class="header">
+  <h1>Studio Agent Bridge Sample</h1>
+  This sample demonstrates interacting with Copilot in a time entry scenerio and watching Copilot create time entries for you.
+  <h3>Type your question or select one below:</h3>
+  <ul>
+    <li><a href="#" onclick="bridge.send(this.innerText);">Record hours worked for Target, 3 hours yesterday with comment fixed bugs in POS software</a></li>
+    <li><a href="#" onclick="bridge.send(this.innerText);">Record hours worked</a></li>
+  </ul>
+</div>
+
+<div class="main">
+  <div class=".float-container">
+    <div class="chat float-child">
+      <div id="webchat"></div>
+    </div>
+    <div style="width: 70%;" class="float-child">
+      <div id="dp"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const dp = new DayPilot.Calendar("dp", {
+    viewType: "Week",
+    timeRangeSelectedHandling: "Enabled",
+    eventResizeHandling: "Update",
+    onTimeRangeSelected: async (args) => {
+      //const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
+      //const dp = args.control;
+      //dp.clearSelection();
+      //if (modal.canceled) { return; }
+
+      const differenceInMilliseconds = args.end.toDate() - args.start.toDate();
+
+      // Convert the difference to various time units
+      const differenceInSeconds = differenceInMilliseconds / 1000;
+      const differenceInMinutes = differenceInSeconds / 60;
+      const differenceInHours = differenceInMinutes / 60;
+      const differenceInDays = differenceInHours / 24;
+
+
+      bridge.send(`Record hours worked on ${args.start} for ${differenceInHours} hours`);
+
+      // dp.events.add({
+      //   start: args.start,
+      //   end: args.end,
+      //   id: DayPilot.guid(),
+      //   html: 'Time Worked<br><ul><li>Client: Target</li><li>3 Hours</li><li>Break fixes in inventory code</li></ul>',
+      // });
+    },
+    eventMoveHandling: "Update",
+    onEventMoved: (args) => {
+      console.log("Event moved: " + args.e.text());
+    },
+    eventResizeHandling: "Update",
+    onEventResized: (args) => {
+      console.log("Event resized: " + args.e.text());
+    },
+    eventClickHandling: "Disabled",
+  });
+  // dp.events.list = [
+  //   {
+  //     id: "1",
+  //     start: DayPilot.Date.today().addHours(10),
+  //     end: DayPilot.Date.today().addHours(12),
+  //     html: 'Time Worked<br><ul><li>Client: Target</li><li>3 Hours</li><li>Break fixes in inventory code</li></ul>'
+  //   }
+  // ];
+  dp.init();
+</script>
+<script src="../../dist/studioAgent.js"></script>
+<script type="text/javascript">
+  var options = new StudioAgent.BridgeOptions("{{TokenEndpointURL}}");
+
+  var bridge = new StudioAgent.Bridge(options);
+
+  bridge.eventReceived = (name, args) => {
+      console.log(`Event received: ${name}`);
+
+      switch (name) {
+        case 'Initialize':
+          console.log(`New event: ${name} ${args}`);
+          break;
+
+        case 'AddEvent':
+          addEvent(args);
+          break;
+      }
+    }
+
+  bridge.connect();
+
+  function addEvent(args) {
+    console.log(args);
+
+    // Parse the date string
+    var dateString = args.date;
+    var date = new DayPilot.Date(dateString);
+
+    // Parse the time string
+    var timeString = args.time.value;
+    var timeParts = timeString.split(':');
+
+    // Extract hours, minutes, and seconds from the time string
+    var hours = parseInt(timeParts[0], 10);
+    var minutes = parseInt(timeParts[1], 10);
+    var seconds = parseInt(timeParts[2], 10);
+
+    // Add the time to the date
+    var endDate = new DayPilot.Date(dateString);
+    endDate = endDate.addHours(hours).addMinutes(minutes);
+
+    const html = `Time Worked<br><ul><li>Client: ${args.client}</li><li>${hours}.${minutes} Hours</li><li>${args.comments}</li></ul>`;
+
+    dp.events.add({
+         start: date,
+         end: endDate,
+         id: DayPilot.guid(),
+         html: html
+       });
+  }
+</script>
+</body>
+</html>

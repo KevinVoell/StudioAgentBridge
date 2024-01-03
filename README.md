@@ -60,13 +60,15 @@ Example javascript files are located in the [samples](./samples) folder
 | ----- | -------- |
 | [Basic](./samples/basic) | The very minimal example to get the copilot to show |
 | [Events](./samples/events) | This sample shows the very basic of using events.  It attaches an onchange to an HTML select element and when the selection changes it fires and event to the bot and the bot responds |
+| [Weather](./samples/weather) | Weather example that demonstrates multiple features of the framework in action |
 | [Options](./samples/options) | This sample shows how to use the options class to change the behavior of the copilot |
+| [Time Entry](./samples/timeentry) | This sample demonstrates using Copilot to assist with time entry |
 
 ### More samples coming soon
 
 ## Roadmap
 
 - [X] Events
-- [ ] Themes
-- [ ] YAML samples
-- [ ] Samples
+- [X] Themes
+- [X] YAML samples
+- [X] Samples

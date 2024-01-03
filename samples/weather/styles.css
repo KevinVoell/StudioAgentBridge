@@ -1,0 +1,79 @@
+body {
+    background-color: lightgray;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;  
+    background-repeat: no-repeat; 
+    /* background-size: 100%;   */
+    background-position: center;
+    background-image: url(./media/Weather.jpeg);
+    color: white;
+}
+
+.chat {
+    width: 400px;
+    height: 500px;
+    min-height: 500px;
+    max-height: 500px;
+    opacity: 100%;
+}
+
+#webchat {
+    height: 100%
+}
+
+.float-container {
+
+}
+
+.float-child {
+    float: left;
+    padding: 20px;
+}
+
+.float-child.header {
+    width: 20%;
+}
+
+.float-child.weather {
+    width: 70%;
+    text-align: center;
+    position: relative;
+}
+
+.float-child.weather > .weatherDetails {
+    background-color: lightgray;
+    opacity: 80%;
+    border-radius: 5%;
+    position: relative;
+    width: max-content;
+    padding: 20px;
+    color: black;
+    display: inline-block;
+}
+
+.alerts {
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.heading {
+    /* mix-blend-mode: difference; */
+    color: black;
+    background-color: lightgray;
+    /* opacity: 80%; */
+    width: min-content;
+    border-radius: 5%;
+}
+
+a {
+    color: black;
+}
